@@ -1,0 +1,116 @@
+@use '../styles/variables' as *;
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+
+  input {
+    color: #fff;
+    outline: none;
+    border-radius: 20px;
+    font-size: 22px;
+    padding: 10px 20px;
+
+    &.txt-searcher {
+      background-color: rgba(0,0,0,0.3);  
+      border: rgba(120,0,0,0.5) 1px solid;
+      width: 400px;
+    }
+
+    &.btn-surprise {
+      background-color: $base-btncolor;
+      border: none;
+      font-size: 16px;
+      letter-spacing: 1px;
+      padding: 0 50px;
+      cursor: pointer;
+      box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #bc3c3c;
+      }
+    }
+  }
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+
+  a {
+    display: block;
+    background-color: #fff;
+    color: inherit;
+    position: relative;
+
+    &.item {
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;      
+      border-radius: 15px;
+      box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+      min-height: 300px;
+    }
+
+    &:hover {
+      .shader {
+        background-color: rgba(255,255,255,0);
+      }
+    }
+
+    .shader {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.6);
+      transition: all 0.3s;
+    }
+
+    .contents {
+      position: absolute;
+      left: 0;
+      bottom: 40px;
+      z-index: 2;
+
+      h3 {
+        background-color: $base-btncolor;
+        margin: 0;
+        max-width: 75%;
+        padding: 10px 15px;
+        color: #fff;
+        border-right: #fff 5px solid;
+      }
+
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+
+  button {
+    cursor: pointer;
+    border: 0;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+}

@@ -1,9 +1,12 @@
 import React from 'react';
+import './Header.scss';
 
 const Header = () => {
   return (
     <header>
-      <h1>cook<b>book</b></h1>
+      <div className="structure">
+        <h1>cook<b>book</b></h1>
+      </div>
     </header>
   )
 }

@@ -1,10 +1,4 @@
-/* GLOBALS */
-$base-bgcolor: #8b0000;
-$base-widgetcolor: #fff;
-$base-textcolor1: #e0e0e0;
-$base-textcolor2: #000;
-$base-accent: #228b22;
-$base-font: Arial, Helvetica, sans-serif;
+@use './styles/variables' as *;
 
 /* STYLES */
 body {
@@ -13,4 +7,18 @@ body {
   font-family: $base-font;
   background-color: $base-bgcolor;
   color: $base-textcolor1;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.structure {
+  width: 960px;
+  margin: 0 auto;
 }
