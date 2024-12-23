@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-12-23
+
+### Added
+- MealDisplay component
+- Individual Recipe page
+- Footer
+- YouTube embed component
+- Surprise Recipe
+- Error-handling
+
+### Changed
+- Overall template
+- Colour scheme overhaul
+
 ## [0.2.0] - 2024-12-21
 
 ### Added

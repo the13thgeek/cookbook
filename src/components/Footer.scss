@@ -1,0 +1,12 @@
+@use '../styles/variables' as *;
+
+footer {
+  background-color: $base-shade6;
+  padding: 20px 40px;
+  
+  p {
+    color: #fff;
+    margin: 0;
+    font-size: 12px;
+  }
+}

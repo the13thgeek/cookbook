@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Message from '../components/Message';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.scss';
 
@@ -7,6 +8,7 @@ const Home = () => {
   const [mealData, setMealData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage , setCurrentPage] = useState(1);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -39,7 +41,8 @@ const Home = () => {
         setIsLoading(false);
         setCurrentPage(1);
       } catch(e) {
-        console.error('Error: ',e);
+        console.error('Error: ',e.message);
+        setError(e.message);
         setIsLoading(false);
       }
     };
@@ -59,6 +62,7 @@ const Home = () => {
   };
 
   return (
+    <>
     <div className="structure">
       <div className="search-bar">
         <div className="search-box">
@@ -66,26 +70,32 @@ const Home = () => {
           <input type="button" value="Surprise me!" className='btn-surprise' onClick={surpriseMe} />
         </div>
       </div>
-      <div className="recipes-grid">
-        { isLoading ? (
-            <p>Loading...</p>
-        ) : currentPageData && currentPageData.length > 0 ? (
-          currentPageData.map((meal, idx) => (
-            <Link to={'/recipe/'+meal.idMeal} style={{ backgroundImage: `url(${meal.strMealThumb}/preview)` }} className='item' key={idx}>
-              <div className="shader"></div>
-              <div className="contents">
-                <h3>{meal.strMeal}</h3>
-              </div>
-              {/* <img src={meal.strMealThumb} alt={meal.strMeal} />
-              <p>{meal.strInstructions}</p>
-              <p>{meal.strYoutube}</p>
-              <p>{meal.strSource}</p> */}
-            </Link>
-          ))
-        ) : (
-          <p>No meals matched.</p>
-        )}        
+    </div>
+    <div className="structure">
+      <div className="recipes">
+        <h2>Recipes</h2>
+        {error && (
+          <Message type={'error'} message={error} />
+        )}
+        <div className="recipes-grid">
+          { isLoading ? (
+              <Message type={'info'} message={'Loading, please wait...'} />
+          ) : currentPageData && currentPageData.length > 0 ? (
+            currentPageData.map((meal, idx) => (
+              <Link to={'/recipe/'+meal.idMeal} className='item' title={meal.strMeal} key={idx}>
+                <div className="preview" style={{ backgroundImage: `url(${meal.strMealThumb}/preview)` }}></div>
+                <div className="contents">
+                  <h3>{meal.strMeal}</h3>
+                </div>
+              </Link>
+            ))
+          ) : !error && (
+            <Message type={'info'} message={`Sorry, no meals or ingredients matched '${searchTerm}.'`} />
+          )}        
+        </div>
       </div>
+    </div>
+    <div className="structure">
       <div className="pagination">
         <button onClick={() => changePage(currentPage-1)} disabled={currentPage <= 1}>&lt; Prev</button>
         {Array.from({ length: totalPages }, (_, idx) => (
@@ -93,8 +103,9 @@ const Home = () => {
         ))}
         <button onClick={() => changePage(currentPage+1)} disabled={currentPage >= totalPages}>Next &gt;</button>
       </div>
-      
+
     </div>
+    </>
   )
 }
 

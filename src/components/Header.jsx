@@ -4,9 +4,7 @@ import './Header.scss';
 const Header = () => {
   return (
     <header>
-      <div className="structure">
-        <h1>cook<b>book</b></h1>
-      </div>
+      <h1><a href="/">cook<b>book</b></a></h1>
     </header>
   )
 }

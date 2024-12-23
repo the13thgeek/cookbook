@@ -1,8 +1,12 @@
 /* GLOBALS */
-$base-bgcolor: #8b0000;
-$base-btncolor: #a23333;
-$base-widgetcolor: #fff;
-$base-textcolor1: #e0e0e0;
-$base-textcolor2: #000;
-$base-accent: #228b22;
+$base-shade1: #a23333;
+$base-shade2: #bc3c3c;
+$base-shade3: #fcc;
+$base-shade4: #e0e0e0;
+$base-shade5: #ddd;
+$base-shade6: #333;
 $base-font: Arial, Helvetica, sans-serif;
+
+/* BREAKPOINTS */
+$screen-sm: 768px;
+$screen-md: 992px;
