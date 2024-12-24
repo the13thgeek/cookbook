@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Recipe from "./pages/Recipe";
 import './App.scss';
 import Surprise from "./pages/Surprise";
+import Favorites from "./pages/Favorites";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/recipe/:id" element={<Recipe />} />
           <Route path="/recipe/surprise" element={<Surprise />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
         <Footer />
       </div>

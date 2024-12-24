@@ -17,7 +17,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: 0;
+}
+
 img {
+  border: 0;
   max-width: 100%;
   height: auto;
 }
@@ -36,7 +41,7 @@ img {
   flex-direction: row;
 }
 
-@media screen and (max-width: $screen-md) {
+@media (max-width: $screen-md) {
   .page-paper {
     width: 100%;
     margin: 0;

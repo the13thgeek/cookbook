@@ -7,7 +7,7 @@ const Message = ({ type = null, message = null }) => {
   return (
     <div className={`message-box ` + type}>
       {type === 'error' && (<h4>Error</h4>)}
-      <p>An unexpected problem has occurred:<br />
+      <p>{type === 'error' && (<>An unexpected problem has occurred:<br /></>)}
       {message}
       </p>
     </div>

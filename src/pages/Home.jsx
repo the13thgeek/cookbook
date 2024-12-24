@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Message from '../components/Message';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.scss';
+import RecipeGrid from '../components/RecipeGrid';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [mealData, setMealData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage , setCurrentPage] = useState(1);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -39,7 +39,6 @@ const Home = () => {
         }
         setMealData(combinedMealData);
         setIsLoading(false);
-        setCurrentPage(1);
       } catch(e) {
         console.error('Error: ',e.message);
         setError(e.message);
@@ -51,15 +50,7 @@ const Home = () => {
 
   },[searchTerm]);
 
-  // pagination stuff
-  const totalPages = Math.ceil(mealData.length / import.meta.env.VITE_PAGE_SIZE);
-  const currentPageData = mealData.slice( (currentPage - 1) * import.meta.env.VITE_PAGE_SIZE, currentPage * import.meta.env.VITE_PAGE_SIZE );
-
-  const changePage = (page) => {
-    if(page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  
 
   return (
     <>
@@ -74,35 +65,21 @@ const Home = () => {
     <div className="structure">
       <div className="recipes">
         <h2>Recipes</h2>
+        { isLoading ? (
+          <Message type={'info'} message={'Loading, please wait...'} />
+        ) : mealData && mealData.length > 0 ? (
+          <RecipeGrid recipes={mealData} />
+        ) : !error && (
+          <Message type={'info'} message={`Sorry, no meals or ingredients matched '${searchTerm}.'`} />
+        )}
+
         {error && (
           <Message type={'error'} message={error} />
-        )}
-        <div className="recipes-grid">
-          { isLoading ? (
-              <Message type={'info'} message={'Loading, please wait...'} />
-          ) : currentPageData && currentPageData.length > 0 ? (
-            currentPageData.map((meal, idx) => (
-              <Link to={'/recipe/'+meal.idMeal} className='item' title={meal.strMeal} key={idx}>
-                <div className="preview" style={{ backgroundImage: `url(${meal.strMealThumb}/preview)` }}></div>
-                <div className="contents">
-                  <h3>{meal.strMeal}</h3>
-                </div>
-              </Link>
-            ))
-          ) : !error && (
-            <Message type={'info'} message={`Sorry, no meals or ingredients matched '${searchTerm}.'`} />
-          )}        
-        </div>
+        )}        
       </div>
     </div>
     <div className="structure">
-      <div className="pagination">
-        <button onClick={() => changePage(currentPage-1)} disabled={currentPage <= 1}>&lt; Prev</button>
-        {Array.from({ length: totalPages }, (_, idx) => (
-          <button key={idx} onClick={() => changePage(idx+1)} disabled={currentPage === idx+1}>{idx+1}</button>
-        ))}
-        <button onClick={() => changePage(currentPage+1)} disabled={currentPage >= totalPages}>Next &gt;</button>
-      </div>
+      
 
     </div>
     </>

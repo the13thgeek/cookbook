@@ -36,10 +36,13 @@ const MealDisplay = ({ mealData = null }) => {
       </div>
       <div className="recipe-body">
         <h3>Instructions</h3>
-        { mealData.strYoutube && (
-          <YouTubeEmbed url={mealData.strYoutube} />
-        )}
         <div className="instructions" dangerouslySetInnerHTML={{ __html: formatHTML(mealData.strInstructions) }} />
+        { mealData.strYoutube && (
+          <>
+          <h3>Recipe Video</h3>
+          <YouTubeEmbed url={mealData.strYoutube} />
+          </>
+        )}
         <a className='return' href='/'>&lt; Back to Recipes</a>
       </div>
             

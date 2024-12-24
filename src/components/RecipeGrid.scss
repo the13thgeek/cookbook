@@ -1,0 +1,115 @@
+@use '../styles/variables' as *;
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 15px;
+  margin: 0 25px;
+
+  .meal-item {
+    display: flex;
+    flex-direction: column;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;      
+    gap: 15px;
+
+    &:hover {
+      .preview {
+        opacity: 1;
+      }
+    }
+
+    .preview {
+      position: relative;
+      border-radius: 5px;
+      background-position: 50% 50%;
+      opacity: 0.7;
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;      
+      height: 200px;
+      transition: all 0.3s;
+
+      .favorite {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background-color: $base-shade1;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 5px 15px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      color: $base-shade1;
+    }
+
+    button {
+      cursor: pointer;
+
+      &.favorite {
+        font-weight: bold;        
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      &.off {
+        background-color: $base-shade1;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+
+  button {
+    cursor: pointer;
+    border: 0;
+    padding: 6px 10px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: $screen-md) { 
+
+  .recipes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: $screen-sm) { 
+
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pagination {
+    button.pagenum {
+      display: none;
+    }
+  }
+
+}

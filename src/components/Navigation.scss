@@ -1,0 +1,89 @@
+@use '../styles/variables' as *;
+
+.nav-area {
+  background-color: transparent;
+
+  button {
+    background-color: transparent;
+
+    &.menu-close {
+      display: none;
+      cursor: pointer;
+    }
+
+    &.mobile-menu {
+      display: none;
+      cursor: pointer;
+    }
+  }
+}
+
+nav {
+  background-color: transparent;
+
+  ul.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+
+    a {
+      text-transform: lowercase;
+      display: block;
+      padding: 5px 10px;
+
+      &.active {
+        font-weight: bold;
+        color: $base-shade1;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+
+  .nav-area {
+ 
+    button {
+
+      &.menu-close {
+        display: block;
+      }
+  
+      &.mobile-menu {
+        display: block;
+        width: 40px;
+      }
+    }
+  }
+
+  nav {
+
+    button.menu-close {
+      display: block;
+      font-size: 40px;
+      padding: 10px;
+    }
+
+    ul.nav-menu {
+      background-color: #fff;
+      position: fixed;
+      flex-direction: column;
+      align-items: start;
+      top: 0;
+      gap: 30px;
+      width: 250px;
+      height: 100%;
+      z-index: 99;
+      transition: right 0.5s;
+      right: -255px;
+      border-left: #ccc 1px solid;
+
+      li {
+        padding-left: 60px;
+      }
+    }
+  }
+
+}

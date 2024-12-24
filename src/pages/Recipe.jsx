@@ -14,8 +14,13 @@ const Recipe = () => {
       try {
         const responseMealInfo = await fetch(`${import.meta.env.VITE_API_URL}/lookup.php?i=${id}`,{ method: "POST" });
         const mealInfo = await responseMealInfo.json();
-        // get first item only
-        setMeal(mealInfo.meals[0]);
+        
+        if (mealInfo.meals !== "Invalid ID" && mealInfo.meals !== null) {
+          // get first item only
+          setMeal(mealInfo.meals[0]);
+        } else {
+          throw Error("Invalid Meal ID.");
+        }        
         setIsLoading(false);
       } catch(e) {
         console.error('Error: ',e.message);

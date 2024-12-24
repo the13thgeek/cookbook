@@ -108,3 +108,21 @@ h1, h3 {
     color: #fff;
   }
 }
+
+@media (max-width: $screen-sm) {
+
+  .overview {
+    flex-direction: column;
+    gap: 0;
+
+    .recipe-image {
+      display: none;
+    }
+
+    .recipe-heading {
+      width: 100%;
+      margin-left: 40px;
+    }
+  }
+
+}
